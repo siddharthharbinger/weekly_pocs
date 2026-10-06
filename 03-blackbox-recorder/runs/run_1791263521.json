@@ -1,0 +1,70 @@
+{
+  "task": "What is the total cost of 3 laptops and 2 pens?",
+  "steps": [
+    {
+      "type": "model",
+      "text": "",
+      "tool_calls": [
+        {
+          "name": "lookup_price",
+          "input": {
+            "item": "laptop"
+          }
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "name": "lookup_price",
+      "input": {
+        "item": "laptop"
+      },
+      "output": "900"
+    },
+    {
+      "type": "model",
+      "text": "",
+      "tool_calls": [
+        {
+          "name": "lookup_price",
+          "input": {
+            "item": "pen"
+          }
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "name": "lookup_price",
+      "input": {
+        "item": "pen"
+      },
+      "output": "1"
+    },
+    {
+      "type": "model",
+      "text": "",
+      "tool_calls": [
+        {
+          "name": "calculator",
+          "input": {
+            "expression": "3*900+2*1"
+          }
+        }
+      ]
+    },
+    {
+      "type": "tool",
+      "name": "calculator",
+      "input": {
+        "expression": "3*900+2*1"
+      },
+      "output": "2702"
+    },
+    {
+      "type": "model",
+      "text": "The total cost is **$2,702**.",
+      "tool_calls": []
+    }
+  ]
+}
