@@ -1,0 +1,18 @@
+{
+  "balances": {
+    "1": 10000,
+    "2": 5000
+  },
+  "changes": [
+    {
+      "account_id": 1,
+      "delta": -12000
+    },
+    {
+      "account_id": 2,
+      "delta": 12000
+    }
+  ],
+  "conserve_total": true,
+  "max_affected": 2
+}

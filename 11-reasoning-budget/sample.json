@@ -1,0 +1,13 @@
+{
+  "a": 137,
+  "b": 286,
+  "candidate_answers": [
+    "422",
+    "423"
+  ],
+  "budget": {
+    "calls": 3,
+    "output_tokens": 128,
+    "seconds": 30
+  }
+}

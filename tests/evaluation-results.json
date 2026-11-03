@@ -1,0 +1,32 @@
+{
+  "scope": "synthetic offline fixtures; not estimates of real-world accuracy",
+  "06": {
+    "cases": 100,
+    "correct": 100,
+    "allow_all_correct": 50
+  },
+  "07": {
+    "unsafe_action_flagged": true,
+    "execute_without_check_would_overdraw": true
+  },
+  "08": {
+    "claims": 2,
+    "flagged": 1,
+    "unchecked_answer_flags": 0
+  },
+  "09": {
+    "uniform_event_covered": false,
+    "adaptive_event_covered": true,
+    "uniform_frames": 3,
+    "adaptive_frames": 5
+  },
+  "10": {
+    "naive_cache_would_return": "7 days",
+    "dependency_cache_hit_after_update": false
+  },
+  "11": {
+    "one_shot_verified": false,
+    "adaptive_verified": true,
+    "adaptive_calls": 2
+  }
+}

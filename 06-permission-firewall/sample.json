@@ -1,0 +1,47 @@
+{
+  "policy": {
+    "tools": [
+      "read_ticket"
+    ],
+    "ticket_ids": [
+      "T1",
+      "T2"
+    ],
+    "max_calls": 2
+  },
+  "actions": [
+    {
+      "tool": "read_ticket",
+      "arguments": {
+        "ticket_id": "T1"
+      }
+    },
+    {
+      "tool": "update_ticket",
+      "arguments": {
+        "ticket_id": "T1",
+        "fields": {
+          "status": "closed"
+        }
+      }
+    },
+    {
+      "tool": "read_ticket",
+      "arguments": {
+        "ticket_id": "T9"
+      }
+    },
+    {
+      "tool": "read_ticket",
+      "arguments": {
+        "ticket_id": "T2"
+      }
+    },
+    {
+      "tool": "read_ticket",
+      "arguments": {
+        "ticket_id": "T1"
+      }
+    }
+  ]
+}

@@ -1,10 +1,10 @@
-# Weekly POCs: Production-Grade AI Engineering Proof of Concepts
+# Weekly POCs: AI Engineering Proof of Concepts
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Groq & Anthropic Compatible](https://img.shields.io/badge/LLM-Groq%20%7C%20Anthropic-orange.svg)](https://console.groq.com)
 
-A curated collection of focused, lightweight, and production-tested Proof of Concepts (POCs) solving critical challenges in building reliable, cost-efficient, and secure LLM applications.
+A curated collection of focused, lightweight, and experimental Proof of Concepts (POCs) solving critical challenges in building reliable, cost-efficient, and secure LLM applications.
 
 Each POC is self-contained with its own runnable script, isolated architecture diagram, and deep-dive documentation.
 
@@ -47,11 +47,11 @@ flowchart TB
 
 | # | Directory & POC Name | Core Challenge Addressed | Architectural Pattern | Key Metric / Output |
 |---|----------------------|--------------------------|-----------------------|---------------------|
-| **01** | [`01-rag-confidence`](file:///c:/Users/Siddharth%20Savant/Documents/POC/01-rag-confidence) | Inconsistent/conflicting documents in RAG knowledge bases | Isolated per-chunk generation + LLM consensus judging | Calibrated Confidence Score & Abstention Gating |
-| **02** | [`02-memory-auditor`](file:///c:/Users/Siddharth%20Savant/Documents/POC/02-memory-auditor) | Long-term memory rot, stale timestamps, conflicting facts | Temporal grounding + Multi-class semantic defect analysis | Memory Health Score % & Actionable Cleanup Plan |
-| **03** | [`03-blackbox-recorder`](file:///c:/Users/Siddharth%20Savant/Documents/POC/03-blackbox-recorder) | Agent non-determinism & silent multi-turn tool failures | Structured JSON flight recording, replay & diffing | Step-by-step Trace & First-Divergence Point |
-| **04** | [`04-injection-canary`](file:///c:/Users/Siddharth%20Savant/Documents/POC/04-injection-canary) | Indirect prompt injection via untrusted third-party data | Dynamic canary tokens + Tripwire tool invocation alerts | Empirical Defense Success Delta (e.g. 0% vs 100%) |
-| **05** | [`05-model-router`](file:///c:/Users/Siddharth%20Savant/Documents/POC/05-model-router) | Overspending on frontier models for trivial user tasks | Low-latency complexity classification + Cascading routing | % Cost Savings & Substance Parity Score |
+| **01** | [`01-rag-confidence`](./01-rag-confidence/) | Inconsistent/conflicting documents in RAG knowledge bases | Isolated per-chunk generation + LLM consensus judging | Calibrated Confidence Score & Abstention Gating |
+| **02** | [`02-memory-auditor`](./02-memory-auditor/) | Long-term memory rot, stale timestamps, conflicting facts | Temporal grounding + Multi-class semantic defect analysis | Memory Health Score % & Actionable Cleanup Plan |
+| **03** | [`03-blackbox-recorder`](./03-blackbox-recorder/) | Agent non-determinism & silent multi-turn tool failures | Structured JSON flight recording, replay & diffing | Step-by-step Trace & First-Divergence Point |
+| **04** | [`04-injection-canary`](./04-injection-canary/) | Indirect prompt injection via untrusted third-party data | Dynamic canary tokens + Tripwire tool invocation alerts | Empirical Defense Success Delta (e.g. 0% vs 100%) |
+| **05** | [`05-model-router`](./05-model-router/) | Overspending on frontier models for trivial user tasks | Low-latency complexity classification + Cascading routing | % Cost Savings & Substance Parity Score |
 
 ---
 
@@ -88,7 +88,7 @@ weekly_pocs/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/siddharthharbinger/weekly_pocs.git
+git clone https://github.com/siddharthsavant27/weekly_pocs.git
 cd weekly_pocs
 ```
 
@@ -158,3 +158,45 @@ python model_router.py
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## CLI Lab: POCs 06–11
+
+Python 3.11+; no frontend. All six have offline demos, JSON inputs/reports, and regression tests.
+
+- [06 — Agent Permission Drift Firewall](./06-permission-firewall/)
+- [07 — Counterfactual Agent Simulator](./07-counterfactual-simulator/)
+- [08 — Claim-Level Evidence Compiler](./08-evidence-compiler/)
+- [09 — Temporal Blind-Spot Detector](./09-temporal-blindspot/)
+- [10 — Semantic Cache Invalidation Engine](./10-semantic-cache/)
+- [11 — Adaptive Reasoning Budget Controller](./11-reasoning-budget/)
+
+### Setup and run
+
+```powershell
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements-lab.txt
+.venv/Scripts/python -m poc_lab 10
+.venv/Scripts/python -m pytest -q
+```
+
+On macOS/Linux use `.venv/bin/python`. Run any number 06–11 with `python -m poc_lab NUMBER`.
+Use `--input scenario.json --output reports/result.json` for custom experiments.
+POCs 08, 09 and 11 support `--live --env-file path/to/.env`; this sends supplied text/frames to Groq.
+Set GROQ_API_KEY and GROQ_MODEL; POC 09 also requires GROQ_VISION_MODEL or --model.
+No API key is needed for offline tests. Keep .env local; never commit it.
+
+POC 10 supports `--db cache.db` for persistence. Its default encoder is a lexical baseline.
+POC 06 enforces explicit policies; 07 simulates only allowlisted account operations;
+08 uses an exact-match offline baseline or Groq judgments; 09 uses visual changes;
+11 uses an arithmetic verifier. See each README for limits and deferred extensions.
+
+Groq API integration follows [text chat](https://console.groq.com/docs/text-chat)
+and [vision](https://console.groq.com/docs/vision) documentation. Model availability is account-dependent.
+
+### Evaluation
+
+Run `python -m poc_lab.evaluate` for reproducible offline comparisons.
+Recorded synthetic results are in [tests/evaluation-results.json](tests/evaluation-results.json).
+These fixtures demonstrate behavior; they are not a general accuracy benchmark.
+The initial Windows/Python 3.12 validation passed 22 tests. Live Groq smoke tests
+for evidence judgment and arithmetic verification passed with `openai/gpt-oss-20b`.

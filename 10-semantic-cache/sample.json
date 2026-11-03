@@ -1,0 +1,30 @@
+{
+  "steps": [
+    {
+      "op": "source",
+      "id": "shipping",
+      "text": "Delivery takes 7 days."
+    },
+    {
+      "op": "put",
+      "question": "shipping delivery time",
+      "answer": "7 days",
+      "dependencies": [
+        "shipping"
+      ]
+    },
+    {
+      "op": "get",
+      "question": "delivery shipping time"
+    },
+    {
+      "op": "source",
+      "id": "shipping",
+      "text": "Delivery takes 5 days."
+    },
+    {
+      "op": "get",
+      "question": "delivery shipping time"
+    }
+  ]
+}

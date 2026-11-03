@@ -1,0 +1,13 @@
+{
+  "answer": "Linux is supported. Offline mode exists.",
+  "claims": [
+    "Linux is supported.",
+    "Offline mode exists."
+  ],
+  "sources": [
+    {
+      "id": "compatibility-v1",
+      "text": "Linux is supported. An internet connection is required."
+    }
+  ]
+}
